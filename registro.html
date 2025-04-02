@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Datos - Pulsioxímetro</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <header>Registro de datos del pulsioxímetro</header>
+    
+    <button onclick="connectDevice()">Conectar Pulsioxímetro</button>
+    
+    <p><strong>Nivel de Oxígeno:</strong> <span id="oxigeno">--</span> %</p>
+    <p><strong>Ritmo Cardíaco:</strong> <span id="ritmo">--</span> bpm</p>
+
+    <br>
+    <a href="index.html">Volver al Inicio</a>
+
+    <script>
+        async function connectDevice() {
+            try {
+                const device = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true,
+                    optionalServices: ['heart_rate']
+                });
+
+                const server = await device.gatt.connect();
+                const service = await server.getPrimaryService('heart_rate');
+                const characteristic = await service.getCharacteristic('heart_rate_measurement');
+
+                characteristic.addEventListener('characteristicvaluechanged', (event) => {
+                    let value = event.target.value;
+                    let heartRate = value.getUint8(1);  
+                    document.getElementById('ritmo').innerText = heartRate;
+                });
+
+                await characteristic.startNotifications();
+                alert("Conectado al pulsioxímetro");
+
+            } catch (error) {
+                console.error("Error al conectar:", error);
+                alert("No se pudo conectar al dispositivo");
+            }
+        }
+    </script>
+</body>
+</html>
