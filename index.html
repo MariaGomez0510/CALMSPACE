@@ -1,88 +1,102 @@
+/* ====== ARCHIVO: index.html ====== */
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App de Apoyo Emocional</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Calm Space</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a la App de Apoyo Emocional</h1>
+        <h1>CALM SPACE</h1>
     </header>
-    <main>
-        <section id="pulsioximetro">
-            <h2>Registro de Datos del Pulsioxímetro</h2>
-            <label for="oxigeno">Nivel de Oxígeno (%):</label>
-            <input type="number" id="oxigeno" min="0" max="100">
-            <label for="frecuencia">Frecuencia Cardíaca (BPM):</label>
-            <input type="number" id="frecuencia" min="0">
-            <button onclick="guardarDatos()">Guardar Datos</button>
-            <ul id="lista-datos"></ul>
-        </section>
-        <section id="respiracion">
-            <h2>Técnicas de Respiración</h2>
-            <p>Prueba esta técnica: Inhala por 4 segundos, sostén 4 segundos, exhala 4 segundos.</p>
-        </section>
-        <section id="foro">
-            <h2>Foro de Apoyo</h2>
-            <textarea id="mensaje" placeholder="Escribe tu mensaje"></textarea>
-            <button onclick="publicarMensaje()">Publicar</button>
-            <ul id="lista-mensajes"></ul>
-        </section>
-    </main>
-    <script>
-        function guardarDatos() {
-            let oxigeno = document.getElementById("oxigeno").value;
-            let frecuencia = document.getElementById("frecuencia").value;
-            if (oxigeno && frecuencia) {
-                let lista = document.getElementById("lista-datos");
-                let item = document.createElement("li");
-                item.textContent = `Oxígeno: ${oxigeno}%, Frecuencia: ${frecuencia} BPM`;
-                lista.appendChild(item);
-            }
-        }
+    <nav>
+        <ul>
+            <li><a href="registro.html">Registro de Datos</a></li>
+            <li><a href="tecnicas.html">Técnicas de Respiración</a></li>
+            <li><a href="foro.html">Foro de Apoyo</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
 
-        function publicarMensaje() {
-            let mensaje = document.getElementById("mensaje").value;
-            if (mensaje.trim() !== "") {
-                let lista = document.getElementById("lista-mensajes");
-                let item = document.createElement("li");
-                item.textContent = mensaje;
-                lista.appendChild(item);
-                document.getElementById("mensaje").value = "";
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f8ff;
-            color: #333;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-        }
-        section {
-            margin: 20px;
-            padding: 10px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+/* ====== ARCHIVO: estilo.css ====== */
+body {
+    background-color: #D8BFD8; /* Morado claro */
+    color: black;
+    font-family: "Times New Roman", serif;
+    text-align: center;
+}
+
+header {
+    font-size: 2em;
+    padding: 20px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: black;
+}
+
+/* ====== ARCHIVO: registro.html ====== */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Datos</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h2>Registro de datos del pulsioxímetro</h2>
+    <label for="oxigeno">Nivel de Oxígeno (%):</label>
+    <input type="number" id="oxigeno" min="0" max="100">
+    <br>
+    <label for="ritmo">Ritmo Cardíaco (bpm):</label>
+    <input type="number" id="ritmo" min="40" max="200">
+    <br>
+    <a href="index.html">Volver al Inicio</a>
+</body>
+</html>
+
+/* ====== ARCHIVO: tecnicas.html ====== */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Técnicas de Respiración</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h2>Técnicas de Respiración</h2>
+    <p>Aquí encontrarás ejercicios para reducir el estrés.</p>
+    <a href="index.html">Volver al Inicio</a>
+</body>
+</html>
+
+/* ====== ARCHIVO: foro.html ====== */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Foro de Apoyo</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h2>Foro de Apoyo</h2>
+    <p>Comparte tus pensamientos y recibe apoyo.</p>
+    <a href="index.html">Volver al Inicio</a>
 </body>
 </html>
