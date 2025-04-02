@@ -5,26 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foro de Apoyo</title>
     <link rel="stylesheet" href="estilo.css">
+    <style>
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        #contenedor-mensajes {
+            width: 60%;
+            text-align: left;
+        }
+        #lista-mensajes {
+            border: 1px solid #4B0082;
+            padding: 10px;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        #palabras-motivacionales {
+            width: 35%;
+            background-color: #E6E6FA;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 60px;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Foro de Apoyo Emocional</h1>
     </header>
     <main>
-        <section>
+        <div id="contenedor-mensajes">
+            <h2>Mensajes</h2>
+            <ul id="lista-mensajes"></ul>
             <h2>Comparte tu experiencia</h2>
             <textarea id="mensaje" placeholder="Escribe tu mensaje..."></textarea>
             <button onclick="publicarMensaje()">Publicar</button>
-        </section>
-        <section>
-            <h2>Mensajes</h2>
-            <ul id="lista-mensajes"></ul>
-        </section>
+        </div>
+        <div id="palabras-motivacionales">
+            <h2>Palabras Motivacionales</h2>
+            <p id="frase"></p>
+        </div>
     </main>
     <footer>
         <p>&copy; 2025 Espacio de Calma</p>
     </footer>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            cargarMensajes();
+            mostrarFraseMotivacional();
+        });
+        
         function publicarMensaje() {
             var mensaje = document.getElementById("mensaje").value;
             if (mensaje.trim() !== "") {
@@ -32,9 +67,39 @@
                 var nuevoMensaje = document.createElement("li");
                 nuevoMensaje.textContent = mensaje;
                 lista.appendChild(nuevoMensaje);
+                guardarMensaje(mensaje);
                 document.getElementById("mensaje").value = "";
             }
+        }
+        
+        function guardarMensaje(texto) {
+            var mensajes = JSON.parse(localStorage.getItem("mensajes")) || [];
+            mensajes.push(texto);
+            localStorage.setItem("mensajes", JSON.stringify(mensajes));
+        }
+        
+        function cargarMensajes() {
+            var mensajes = JSON.parse(localStorage.getItem("mensajes")) || [];
+            var lista = document.getElementById("lista-mensajes");
+            mensajes.forEach(function(mensaje) {
+                var nuevoMensaje = document.createElement("li");
+                nuevoMensaje.textContent = mensaje;
+                lista.appendChild(nuevoMensaje);
+            });
+        }
+        
+        function mostrarFraseMotivacional() {
+            var frases = [
+                "Eres más fuerte de lo que crees.",
+                "Cada día es una nueva oportunidad.",
+                "La calma comienza en tu interior.",
+                "Respira, todo estará bien.",
+                "No estás solo, estamos contigo."
+            ];
+            var fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+            document.getElementById("frase").textContent = fraseAleatoria;
         }
     </script>
 </body>
 </html>
+
