@@ -3,52 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Técnicas de Respiración</title>
+    <title>Calm Space</title>
     <link rel="stylesheet" href="estilo.css">
     <style>
-        main {
-            display: flex;
-            justify-content: space-around;
+        body {
+            background-color: #FAF9F6; /* Cambiado solo para este archivo */
             text-align: center;
-            padding: 20px;
         }
-        .tecnica {
-            width: 30%;
-            background-color: #F6F9F6;
-            padding: 15px;
+        .logo {
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 350px; /* Aumentado el tamaño del logo */
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 144px; /* Aproximadamente 1.5 pulgadas en pantallas estándar */
+            margin-top: 40px; /* Subido más hacia el centro */
+            align-items: center;
+        }
+        .menu a {
+            text-decoration: none;
+            font-size: 1.5em; /* Aumentado el tamaño de la fuente */
+            color: #4B0082;
+            font-weight: bold;
+            padding: 15px 20px; /* Aumentado el tamaño de los botones */
+            border: 3px solid #4B0082;
             border-radius: 10px;
         }
-        .tecnica h2 {
+        .notes {
+            background-color: #F6F9F6;
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .notes h2 {
             color: #4B0082;
+            font-size: 1.8em;
+        }
+        .notes p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .emergency {
+            margin-top: 85px; /* Subido 1.5 cm (aprox) */
+            font-size: 1em;
+            color: black;
+        }
+        .emergency p {
+            display: inline;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        .emergency a {
+            color: #4B0082;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Técnicas de Respiración</h1>
-    </header>
-    <main>
-        <div class="tecnica">
-            <h2>Respiración Diafragmática</h2>
-            <p>Favorece la oxigenación del cuerpo y activa el sistema nervioso parasimpático, reduciendo el estrés.</p>
-            <h3>¿Cómo realizarla?</h3>
-            <p>Inhala profundamente inflando el abdomen, mantén el aire unos segundos y exhala lentamente.</p>
-        </div>
-        <div class="tecnica">
-            <h2>Respiración 4-7-8</h2>
-            <p>Regula el ritmo cardíaco y promueve la relajación profunda al ralentizar la respiración.</p>
-            <h3>¿Cómo realizarla?</h3>
-            <p>Inhala en 4 segundos, retén el aire 7 segundos y exhala en 8 segundos. Repite varias veces.</p>
-        </div>
-        <div class="tecnica">
-            <h2>Respiración Alterna</h2>
-            <p>Equilibra los hemisferios cerebrales y mejora la concentración y el bienestar emocional.</p>
-            <h3>¿Cómo realizarla?</h3>
-            <p>Cierra una fosa nasal, inhala por la otra, cambia de lado y exhala. Alterna varias veces.</p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Espacio de Calma</p>
-    </footer>
+    <img class="logo" src="image.png" alt="Logo CalmSpace">
+    
+    <div class="menu">
+        <a href="registro.html">Registro de Datos</a>
+        <a href="tecnicas.html">Técnicas de Respiración</a>
+        <a href="foro.html">Foro de Apoyo</a>
+    </div>
+    
+    <div class="notes">
+        <h2>🌸 Notas de amor para ti</h2>
+        <p>Recuerda que cada día es una nueva oportunidad para crecer y brillar. Confía en ti mismo y sigue adelante con amor y determinación. 💖</p>
+    </div>
+    
+    <div class="emergency" style="position: relative; bottom: -35px;">
+        <h3>Números de Emergencia en Colombia</h3>
+        <p><strong>Emergencias generales: 123</strong></p>
+        <p><strong>Línea de ayuda psicológica: <a href="linea_psicologica.pdf" target="_blank">Ver aquí</a></strong></p>
+    </div>
 </body>
 </html>
