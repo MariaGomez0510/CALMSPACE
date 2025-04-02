@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro de Apoyo</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Foro de Apoyo Emocional</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Comparte tu experiencia</h2>
+            <textarea id="mensaje" placeholder="Escribe tu mensaje..."></textarea>
+            <button onclick="publicarMensaje()">Publicar</button>
+        </section>
+        <section>
+            <h2>Mensajes</h2>
+            <ul id="lista-mensajes"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Espacio de Calma</p>
+    </footer>
+    <script>
+        function publicarMensaje() {
+            var mensaje = document.getElementById("mensaje").value;
+            if (mensaje.trim() !== "") {
+                var lista = document.getElementById("lista-mensajes");
+                var nuevoMensaje = document.createElement("li");
+                nuevoMensaje.textContent = mensaje;
+                lista.appendChild(nuevoMensaje);
+                document.getElementById("mensaje").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
