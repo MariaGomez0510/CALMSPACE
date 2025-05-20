@@ -91,16 +91,31 @@
             mostrarFraseMotivacional();
         });
         
-        function publicarMensaje() {
-            var mensaje = document.getElementById("mensaje").value;
-            if (mensaje.trim() !== "") {
-                var lista = document.getElementById("lista-mensajes");
-                var nuevoMensaje = document.createElement("li");
-                nuevoMensaje.textContent = mensaje;
-                lista.appendChild(nuevoMensaje);
-                guardarMensaje(mensaje);
-                document.getElementById("mensaje").value = "";
-            }
+    function publicarMensaje() {
+    var mensaje = document.getElementById("mensaje").value.trim();
+    if (mensaje === "") return;
+
+    // Lista de palabras o frases sensibles a bloquear
+    const palabrasProhibidas = ["suicidio", "me quiero morir", "no quiero vivir", "matarme", "quitarme la vida","matate","suicidar","suiciidate","morir","muerte"];
+
+    // Comprobación simple (puedes hacerla más compleja si quieres)
+    const contieneProhibidas = palabrasProhibidas.some(palabra =>
+        mensaje.toLowerCase().includes(palabra)
+    );
+
+    if (contieneProhibidas) {
+        alert("Este mensaje contiene contenido sensible y no puede ser publicado. Si estás pasando por un momento difícil, por favor contactanos para poder darte ayuda profesional.");
+        return;
+    }
+
+    var lista = document.getElementById("lista-mensajes");
+    var nuevoMensaje = document.createElement("li");
+    nuevoMensaje.textContent = mensaje;
+    lista.appendChild(nuevoMensaje);
+    guardarMensaje(mensaje);
+    document.getElementById("mensaje").value = "";
+    }
+
         }
         
         function guardarMensaje(texto) {
