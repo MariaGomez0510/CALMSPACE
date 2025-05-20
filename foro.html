@@ -90,10 +90,24 @@
             cargarMensajes();
             mostrarFraseMotivacional();
         });
-        
+
         function publicarMensaje() {
-            var mensaje = document.getElementById("mensaje").value;
-            if (mensaje.trim() !== "") {
+            var mensaje = document.getElementById("mensaje").value.trim();
+            const palabrasProhibidas = [
+                "suicidio", "matar", "muerte", "morir", "quitarme la vida",
+                "no quiero vivir", "me quiero morir", "acabar con todo","desaparecer","no existir"
+            ];
+
+            const contieneProhibidas = palabrasProhibidas.some(palabra =>
+                mensaje.toLowerCase().includes(palabra)
+            );
+
+            if (contieneProhibidas) {
+                alert("Tu mensaje contiene palabras sensibles. Si necesitas ayuda, por favor contacta a una línea de atención especializada.");
+                return;
+            }
+
+            if (mensaje !== "") {
                 var lista = document.getElementById("lista-mensajes");
                 var nuevoMensaje = document.createElement("li");
                 nuevoMensaje.textContent = mensaje;
@@ -102,13 +116,13 @@
                 document.getElementById("mensaje").value = "";
             }
         }
-        
+
         function guardarMensaje(texto) {
             var mensajes = JSON.parse(localStorage.getItem("mensajes")) || [];
             mensajes.push(texto);
             localStorage.setItem("mensajes", JSON.stringify(mensajes));
         }
-        
+
         function cargarMensajes() {
             var mensajes = JSON.parse(localStorage.getItem("mensajes")) || [];
             var lista = document.getElementById("lista-mensajes");
@@ -118,18 +132,22 @@
                 lista.appendChild(nuevoMensaje);
             });
         }
-        
+
         function mostrarFraseMotivacional() {
             var frases = [
                 "Eres más fuerte de lo que crees.",
                 "Cada día es una nueva oportunidad.",
                 "La calma comienza en tu interior.",
                 "Respira, todo estará bien.",
-                "No estás solo, estamos contigo."
-            ];
+                "No estás solo, estamos contigo.",
+                "El mundo es mejor porque tu estás en él",
+                "Confía en el proceso",
+                "Recuerda que todo lo que necesitas está dentro de ti"
+              ];
             var fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
             document.getElementById("frase").textContent = fraseAleatoria;
         }
     </script>
 </body>
 </html>
+
