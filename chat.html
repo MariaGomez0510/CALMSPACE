@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asistente CalmSpace</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .asistente-container {
+      background: white;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+    }
+
+    .asistente-header {
+      background: #4e91f9;
+      color: white;
+      padding: 16px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .chat {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      background-color: #eef3f9;
+    }
+
+    .mensaje {
+      margin: 10px 0;
+      max-width: 80%;
+      padding: 10px;
+      border-radius: 12px;
+      clear: both;
+    }
+
+    .mensaje.usuario {
+      background-color: #d1e7ff;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    .mensaje.bot {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      margin-right: auto;
+    }
+
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .input-area input {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .input-area button {
+      padding: 12px 20px;
+      background-color: #4e91f9;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="asistente-container">
+    <div class="asistente-header">Asistente CalmSpace</div>
+    <div class="chat" id="chat"></div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Escribe tu mensaje..." />
+      <button onclick="enviarMensaje()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    const chat = document.getElementById("chat");
+
+    function enviarMensaje() {
+      const input = document.getElementById("userInput");
+      const texto = input.value.trim();
+      if (texto === "") return;
+
+      agregarMensaje(texto, "usuario");
+      input.value = "";
+
+      // Simula una respuesta del asistente
+      setTimeout(() => {
+        const respuesta = obtenerRespuesta(texto);
+        agregarMensaje(respuesta, "bot");
+      }, 600);
+    }
+
+    function agregarMensaje(texto, tipo) {
+      const mensaje = document.createElement("div");
+      mensaje.classList.add("mensaje", tipo);
+      mensaje.innerText = texto;
+      chat.appendChild(mensaje);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function obtenerRespuesta(input) {
+      const texto = input.toLowerCase();
+
+      if (texto.includes("ansiedad") || texto.includes("ayuda")) {
+        return "Estoy aquí contigo. ¿Te gustaría hacer una técnica de respiración guiada?";
+      }
+      if (texto.includes("sí") || texto.includes("dale")) {
+        return "Inhalamos por 4 segundos... sostenemos por 7... exhalamos por 8. ¡Repite conmigo!";
+      }
+      if (texto.includes("gracias")) {
+        return "¡Siempre que me necesites, estoy aquí! 💙";
+      }
+
+      return "No estoy seguro de cómo ayudarte con eso, pero estoy aquí para ti.";
+    }
+  </script>
+</body>
+</html>
