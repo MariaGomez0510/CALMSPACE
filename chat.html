@@ -123,13 +123,16 @@
     function obtenerRespuesta(input) {
       const texto = input.toLowerCase();
 
-      if (texto.includes("ansiedad") || texto.includes("ayuda")) {
+       if (texto.includes("Hola") || texto.includes("Necesito ayuda")|| texto.includes("hola")) {
+        return "Bienvenido a Calmspace, todo estará bien, cuentame como te puedo ayudar";
+      }
+      if (texto.includes("tengo ansiedad") || texto.includes("ayuda")|| texto.includes("estres")|| texto.includes("tengo un episodio de ansiedad")|| texto.includes("tengo un episodio de estres")) {
         return "Estoy aquí contigo. ¿Te gustaría hacer una técnica de respiración guiada?";
       }
-      if (texto.includes("sí") || texto.includes("dale")) {
-        return "Inhalamos por 4 segundos... sostenemos por 7... exhalamos por 8. ¡Repite conmigo!";
+      if (texto.includes("si") || texto.includes("dale")|| texto.includes("esta bien")|| texto.includes("por favor")) {
+        return "Muy bien, empecemos. Inhalamos por 4 segundos... sostenemos por 7... exhalamos por 8. ¡Repite conmigo!";
       }
-      if (texto.includes("gracias")) {
+      if (texto.includes("gracias")|| texto.includes("estoy mejor")|| texto.includes("bien")) {
         return "¡Siempre que me necesites, estoy aquí! 💙";
       }
 
