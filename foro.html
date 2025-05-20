@@ -1,110 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foro de Apoyo</title>
-    <link rel="stylesheet" href="estilo.css">
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-        main {
-            display: flex;
-            justify-content: space-between;
-            flex-grow: 1;
-            padding: 0.5px 20px;
-            align-items: center;
-        }
-        #contenedor-mensajes {
-            width: 60%;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-        }
-        #lista-mensajes {
-            border: 1px solid #4B0082;
-            padding: 10px;
-            min-height: 200px;
-            max-height: 300px;
-            overflow-y: auto;
-            flex-grow: 1;
-        }
-        #palabras-motivacionales {
-            width: 35%;
-            background-color: #FAF9F6;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        #palabras-motivacionales h2 {
-            font-size: 1.8em;
-            color: #4B0082;
-            text-align: center;
-        }
-        #palabras-motivacionales p {
-            font-size: 1.2em;
-            color: #333;
-            text-align: center;
-        }
-        textarea {
-            width: 100%;
-            height: 60px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #FAF9F6;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Foro de Apoyo Emocional</h1>
-    </header>
-    <main>
-        <div id="contenedor-mensajes">
-            <h2>Mensajes</h2>
-            <ul id="lista-mensajes"></ul>
-            <h2>Comparte tu experiencia</h2>
-            <textarea id="mensaje" placeholder="Escribe tu mensaje..."></textarea>
-            <button onclick="publicarMensaje()">Publicar</button>
-        </div>
-        <div id="palabras-motivacionales">
-            <h2>🌸 Notas de amor para ti</h2>
-            <p id="frase"></p>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Espacio de Calma</p>
-    </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            cargarMensajes();
-            mostrarFraseMotivacional();
-        });
-        
-    function publicarMensaje() {
+function publicarMensaje() {
     var mensaje = document.getElementById("mensaje").value.trim();
     if (mensaje === "") return;
 
     // Lista de palabras o frases sensibles a bloquear
-    const palabrasProhibidas = ["suicidio", "me quiero morir", "no quiero vivir", "matarme", "quitarme la vida","matate","suicidar","suiciidate","morir","muerte"];
+    const palabrasProhibidas = [
+        "suicidio", "me quiero morir", "no quiero vivir", "matarme",
+        "quitarme la vida", "matate", "suicidar", "suiciidate",
+        "morir", "muerte"
+    ];
 
-    // Comprobación simple (puedes hacerla más compleja si quieres)
-    const contieneProhibidas = palabrasProhibidas.some(palabra =>
-        mensaje.toLowerCase().includes(palabra)
-    );
+    // Comprobación con expresiones regulares para mayor precisión
+    const contieneProhibidas = palabrasProhibidas.some(palabra => {
+        const regex = new RegExp(`\\b${palabra}\\b`, 'i');
+        return regex.test(mensaje);
+    });
 
     if (contieneProhibidas) {
-        alert("Este mensaje contiene contenido sensible y no puede ser publicado. Si estás pasando por un momento difícil, por favor contactanos para poder darte ayuda profesional.");
+        alert("Notamos que tu mensaje contiene palabras sensibles. Por favor, recuerda que este espacio es para apoyo positivo. Si estás pasando por un momento difícil, no estás solo: busca ayuda profesional o contáctanos.");
         return;
     }
 
@@ -114,37 +26,5 @@
     lista.appendChild(nuevoMensaje);
     guardarMensaje(mensaje);
     document.getElementById("mensaje").value = "";
-    }
+}
 
-        }
-        
-        function guardarMensaje(texto) {
-            var mensajes = JSON.parse(localStorage.getItem("mensajes")) || [];
-            mensajes.push(texto);
-            localStorage.setItem("mensajes", JSON.stringify(mensajes));
-        }
-        
-        function cargarMensajes() {
-            var mensajes = JSON.parse(localStorage.getItem("mensajes")) || [];
-            var lista = document.getElementById("lista-mensajes");
-            mensajes.forEach(function(mensaje) {
-                var nuevoMensaje = document.createElement("li");
-                nuevoMensaje.textContent = mensaje;
-                lista.appendChild(nuevoMensaje);
-            });
-        }
-        
-        function mostrarFraseMotivacional() {
-            var frases = [
-                "Eres más fuerte de lo que crees.",
-                "Cada día es una nueva oportunidad.",
-                "La calma comienza en tu interior.",
-                "Respira, todo estará bien.",
-                "No estás solo, estamos contigo."
-            ];
-            var fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
-            document.getElementById("frase").textContent = fraseAleatoria;
-        }
-    </script>
-</body>
-</html>
