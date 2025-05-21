@@ -17,9 +17,27 @@
             background-color: #f5e6ff;
             padding: 15px;
             border-radius: 10px;
+            position: relative;
         }
         .tecnica h2 {
             color: #4B0082;
+        }
+        .btn-video {
+            background-color: #4B0082;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .video-container {
+            display: none;
+            margin-top: 10px;
+        }
+        video {
+            width: 100%;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -29,18 +47,39 @@
     </header>
     <main>
         <div class="tecnica">
+            <button class="btn-video" onclick="mostrarVideo('video1')">Ver Video</button>
+            <div class="video-container" id="video1">
+                <video controls>
+                    <source src="Respiracion_Diafragma.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+            </div>
             <h2>Respiración Diafragmática</h2>
             <p>Favorece la oxigenación del cuerpo y activa el sistema nervioso parasimpático, reduciendo el estrés.</p>
             <h3>¿Cómo realizarla?</h3>
             <p>Inhala profundamente inflando el abdomen, mantén el aire unos segundos y exhala lentamente.</p>
         </div>
         <div class="tecnica">
+            <button class="btn-video" onclick="mostrarVideo('video2')">Ver Video</button>
+            <div class="video-container" id="video2">
+                <video controls>
+                    <source src="Respiracion_4-7-8.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+            </div>
             <h2>Respiración 4-7-8</h2>
             <p>Regula el ritmo cardíaco y promueve la relajación profunda al ralentizar la respiración.</p>
             <h3>¿Cómo realizarla?</h3>
             <p>Inhala en 4 segundos, retén el aire 7 segundos y exhala en 8 segundos. Repite varias veces.</p>
         </div>
         <div class="tecnica">
+            <button class="btn-video" onclick="mostrarVideo('video3')">Ver Video</button>
+            <div class="video-container" id="video3">
+                <video controls>
+                    <source src="Respiracion_Alterna.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+            </div>
             <h2>Respiración Alterna</h2>
             <p>Equilibra los hemisferios cerebrales y mejora la concentración y el bienestar emocional.</p>
             <h3>¿Cómo realizarla?</h3>
@@ -50,5 +89,20 @@
     <footer>
         <p>&copy; 2025 Espacio de Calma</p>
     </footer>
+
+    <script>
+        function mostrarVideo(id) {
+            // Oculta todos los contenedores
+            document.querySelectorAll('.video-container').forEach(container => {
+                container.style.display = 'none';
+                container.querySelector('video').pause(); // Detiene cualquier otro video
+            });
+            // Muestra solo el seleccionado
+            const videoContainer = document.getElementById(id);
+            videoContainer.style.display = 'block';
+            videoContainer.querySelector('video').play();
+        }
+    </script>
 </body>
 </html>
+
